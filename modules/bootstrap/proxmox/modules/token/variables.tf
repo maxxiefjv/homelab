@@ -16,3 +16,8 @@ variable "storage_id" {
   type        = string
   description = "Proxmox storage ID to scope the token to"
 }
+
+variable "proxmox_node" {
+  type        = string
+  description = "Proxmox node name — VM.Allocate must be granted at the node level for VM creation"
+}

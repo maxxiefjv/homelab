@@ -14,6 +14,13 @@ resource "proxmox_user_token" "this" {
   comment               = "[terraform][${var.app_name}] scoped API token"
 }
 
+resource "proxmox_acl" "node" {
+  path      = "/nodes/${var.proxmox_node}"
+  role_id   = "AppEnvRole"
+  token_id  = proxmox_user_token.this.id
+  propagate = true
+}
+
 resource "proxmox_acl" "pool" {
   path      = "/pool/${var.pool_id}"
   role_id   = "AppEnvRole"

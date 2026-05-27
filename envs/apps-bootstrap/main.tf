@@ -37,6 +37,13 @@ resource "proxmox_virtual_environment_role" "app_env_role" {
   ]
 }
 
+resource "proxmox_acl" "terraform_apps_user" {
+  path      = "/"
+  role_id   = proxmox_virtual_environment_role.app_env_role.role_id
+  user_id   = "terraform-apps@pam"
+  propagate = true
+}
+
 module "oktobus" {
   source = "../../modules/bootstrap/proxmox"
 
