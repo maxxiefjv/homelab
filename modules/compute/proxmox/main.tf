@@ -14,11 +14,12 @@ locals {
     large  = { cores = 4, memory = 2048 }
   }
   size = local.size_map[var.instance_size]
+  tags = ["terraform", var.app_name]
 }
 
 resource "proxmox_virtual_environment_container" "this" {
   node_name = var.proxmox_node
-  tags      = [var.app_name]
+  tags      = local.tags
 
   clone {
     node_name = var.proxmox_node
