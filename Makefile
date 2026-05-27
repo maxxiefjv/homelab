@@ -13,7 +13,7 @@ upgrade:
 snapshot:
 	ansible-playbook $(ANSIBLE_OPTS) playbooks/snapshot.yml
 
-install-pihole:
+install:
 	ansible-playbook $(ANSIBLE_OPTS) playbooks/home_services.yml
 
 update-pihole:

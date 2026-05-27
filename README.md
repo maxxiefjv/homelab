@@ -41,7 +41,8 @@ Update `inventory/hosts.ini` with real IPs and `proxmox_vmid` values before runn
 | `make converge` | Full converge — applies base to all hosts, then all service roles |
 | `make upgrade` | Snapshot all hosts, run `apt dist-upgrade`, reboot if needed, update Pi-hole |
 | `make snapshot` | Take pre-upgrade Proxmox snapshots for all hosts |
-| `make install-pihole` | Converge the home_services group (base + Pi-hole install) |
+| `make install` | Converge the home_services group |
+| `make uninstall-pihole` | Uninstall pihole from pihole host |
 | `make update-pihole` | Run `pihole -up` and `pihole -g` on home_services hosts |
 | `make stop-pihole` | Stop and disable pihole-FTL on home_services hosts |
 
