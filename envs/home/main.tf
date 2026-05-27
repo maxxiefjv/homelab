@@ -8,4 +8,6 @@ module "pihole" {
   ip_address         = "172.16.10.100/24"
   gateway            = "172.16.10.1"
   proxmox_node       = "pve"
+
+  tags = ["homelab"]
 }

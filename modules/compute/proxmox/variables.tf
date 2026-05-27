@@ -25,3 +25,8 @@ variable "gateway" {
 variable "proxmox_node" {
   type = string
 }
+
+variable "tags" {
+  type = list(string)
+  default = []
+}

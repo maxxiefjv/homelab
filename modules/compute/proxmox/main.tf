@@ -14,7 +14,7 @@ locals {
     large  = { cores = 4, memory = 2048 }
   }
   size = local.size_map[var.instance_size]
-  tags = ["terraform", var.app_name]
+  tags = concat(["terraform", var.app_name], var.tags)
 }
 
 resource "proxmox_virtual_environment_container" "this" {
