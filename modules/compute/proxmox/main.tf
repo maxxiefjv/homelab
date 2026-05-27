@@ -21,6 +21,10 @@ resource "proxmox_virtual_environment_container" "this" {
   node_name = var.proxmox_node
   tags      = local.tags
 
+  lifecycle {
+    prevent_destroy = true
+  }
+
   clone {
     node_name = var.proxmox_node
     vm_id     = data.proxmox_virtual_environment_containers.template.containers[0].vm_id
