@@ -1,0 +1,12 @@
+---
+- name: Converge home services
+  hosts: home_services
+  become: true
+  roles:
+    - base
+
+- name: Converge pihole
+  hosts: pihole
+  become: true
+  roles:
+    - pihole

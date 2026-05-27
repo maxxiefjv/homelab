@@ -1,0 +1,15 @@
+---
+- name: Take pre-upgrade snapshots via Proxmox API
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: Take Proxmox snapshot
+      community.general.proxmox_snap:
+        api_host: "{{ proxmox_api_host }}"
+        api_user: "{{ proxmox_api_user }}"
+        api_token_id: "{{ proxmox_api_token_id }}"
+        api_token_secret: "{{ proxmox_api_token_secret }}"
+        vmid: "{{ proxmox_vmid }}"
+        snapname: "pre-upgrade-{{ ansible_facts['date_time']['date'] }}"
+        state: present
+      delegate_to: localhost

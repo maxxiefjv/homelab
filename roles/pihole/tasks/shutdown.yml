@@ -1,0 +1,10 @@
+---
+- name: Stop pihole-FTL service
+  ansible.builtin.service:
+    name: pihole-FTL
+    state: stopped
+
+- name: Disable pihole-FTL from starting on boot
+  ansible.builtin.service:
+    name: pihole-FTL
+    enabled: false

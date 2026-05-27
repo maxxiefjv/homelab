@@ -1,0 +1,28 @@
+---
+- name: Check if pihole is installed
+  ansible.builtin.stat:
+    path: /usr/local/bin/pihole
+  register: pihole_binary
+
+- name: Stop pihole-FTL before uninstall
+  ansible.builtin.service:
+    name: pihole-FTL
+    state: stopped
+  when: pihole_binary.stat.exists
+  failed_when: false
+
+- name: Uninstall Pi-hole (non-interactive)
+  ansible.builtin.shell:
+    cmd: echo y | pihole uninstall
+  when: pihole_binary.stat.exists
+  changed_when: pihole_binary.stat.exists
+
+- name: Remove residual Pi-hole config directory
+  ansible.builtin.file:
+    path: /etc/pihole
+    state: absent
+
+- name: Remove residual dnsmasq config
+  ansible.builtin.file:
+    path: /etc/dnsmasq.d/01-pihole.conf
+    state: absent

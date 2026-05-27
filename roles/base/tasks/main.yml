@@ -1,0 +1,47 @@
+---
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: Ensure sudo is installed
+  ansible.builtin.apt:
+    name: sudo
+    state: present
+
+- name: Ensure openssh-server is installed
+  ansible.builtin.apt:
+    name: openssh-server
+    state: present
+
+- name: Ensure ssh service is running and enabled
+  ansible.builtin.service:
+    name: ssh
+    state: started
+    enabled: true
+
+- name: Ensure ansible user exists
+  ansible.builtin.user:
+    name: ansible
+    shell: /bin/bash
+    state: present
+    system: false
+
+- name: Grant ansible user passwordless sudo
+  ansible.builtin.copy:
+    dest: /etc/sudoers.d/ansible
+    content: "ansible ALL=(ALL) NOPASSWD:ALL\n"
+    mode: "0440"
+    validate: /usr/sbin/visudo -cf %s
+  notify: Restart ssh
+
+- name: Configure default locale
+  ansible.builtin.lineinfile:
+    path: /etc/default/locale
+    regexp: "^{{ item.key }}="
+    line: "{{ item.key }}={{ item.value }}"
+    create: true
+    mode: "0644"
+  loop:
+    - { key: LANG, value: "C.UTF-8" }
+    - { key: LC_ALL, value: "C.UTF-8" }

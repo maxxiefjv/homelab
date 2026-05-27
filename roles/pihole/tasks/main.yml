@@ -1,0 +1,3 @@
+---
+- name: Run pihole tasks
+  ansible.builtin.include_tasks: "{{ pihole_tasks | default('install') }}.yml"

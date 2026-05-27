@@ -1,0 +1,12 @@
+---
+- name: Apply base role to all hosts
+  hosts: all
+  become: true
+  roles:
+    - base
+
+- name: Converge home services
+  hosts: pihole
+  become: true
+  roles:
+    - pihole

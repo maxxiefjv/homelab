@@ -1,0 +1,11 @@
+---
+pihole_interface: eth0
+pihole_ipv4_address: "{{ ansible_facts['default_ipv4']['address'] }}/24"
+pihole_dns_1: 1.1.1.1
+pihole_dns_2: 8.8.8.8
+pihole_query_logging: "true"
+pihole_install_web_server: "true"
+pihole_install_web_interface: "true"
+pihole_cache_size: 10000
+pihole_blocking_enabled: "true"
+pihole_webpassword: "{{ vault_pihole_webpassword }}"

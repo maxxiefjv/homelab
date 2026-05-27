@@ -1,0 +1,8 @@
+---
+- name: Update Pi-hole
+  ansible.builtin.command: pihole -up
+  changed_when: true
+
+- name: Update gravity (blocklists)
+  ansible.builtin.command: pihole -g
+  changed_when: true
