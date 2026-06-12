@@ -24,6 +24,7 @@ resource "proxmox_virtual_environment_role" "app_env_role" {
     "VM.Allocate",
     "VM.Audit",
     "VM.Clone",
+    "VM.Config.HWType",
     "VM.Config.CPU",
     "VM.Config.Memory",
     "VM.Config.Network",
