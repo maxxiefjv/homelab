@@ -41,3 +41,17 @@ resource "proxmox_acl" "storage" {
   token_id  = proxmox_user_token.this.id
   propagate = true
 }
+
+resource "proxmox_acl" "snippets_storage" {
+  path      = "/storage/${var.snippets_storage_id}"
+  role_id   = "AppEnvRole"
+  token_id  = proxmox_user_token.this.id
+  propagate = true
+}
+
+resource "proxmox_acl" "template" {
+  path      = "/vms/${var.template_vm_id}"
+  role_id   = "AppEnvRole"
+  token_id  = proxmox_user_token.this.id
+  propagate = false
+}

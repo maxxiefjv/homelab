@@ -24,9 +24,11 @@ module "network" {
 module "token" {
   source = "./modules/token"
 
-  app_name     = var.app_name
-  pool_id      = proxmox_virtual_environment_pool.this.pool_id
-  sdn_zone     = module.network.zone_id
-  storage_id   = var.storage_id
-  proxmox_node = var.proxmox_node
+  app_name            = var.app_name
+  pool_id             = proxmox_virtual_environment_pool.this.pool_id
+  sdn_zone            = module.network.zone_id
+  storage_id          = var.storage_id
+  snippets_storage_id = var.snippets_storage_id
+  proxmox_node        = var.proxmox_node
+  template_vm_id      = var.template_vm_id
 }

@@ -22,3 +22,13 @@ variable "storage_id" {
   type        = string
   description = "Proxmox storage ID to scope the token to (e.g. local-lvm)"
 }
+
+variable "snippets_storage_id" {
+  type        = string
+  description = "Proxmox storage ID that holds snippets (cloud-init, etc.)"
+}
+
+variable "template_vm_id" {
+  type        = number
+  description = "VM ID of the template to clone from"
+}

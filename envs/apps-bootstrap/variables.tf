@@ -33,3 +33,8 @@ variable "storage_id" {
   type        = string
   description = "Proxmox storage ID to scope app tokens to (e.g. local-lvm)"
 }
+
+variable "template_vm_id" {
+  type        = number
+  description = "VM ID of the base template all apps clone from (e.g. 9001)"
+}
